@@ -8,15 +8,15 @@ const openai = new OpenAI({
 });
 
 export async function POST(request: Request) {
-  const { messages } = await request.json();
+  const { message } = await request.json();
 
   console.log(
     "\n\n -------------------------------------- \n\n ",
-    messages,
+    message,
     "\n\n -------------------------------------- \n\n "
   );
 
-  if (!messages) {
+  if (!message) {
     return NextResponse.json({ message: "Query is required" });
   }
 
@@ -37,12 +37,16 @@ export async function POST(request: Request) {
       role: "system",
       content: welcomePrompt(),
     },
-    ...messages,
+    {
+      role: "user",
+      content: message,
+    },
   ];
 
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
+      //@ts-ignore
       messages: messages_chat,
       functions: welcomeFunctions,
       function_call: "auto",
