@@ -1,5 +1,7 @@
 import { recomendations } from "./prompts";
 
+const activities = ["enterprise", "resico", "platforms", "salaried"];
+
 const descriptionActivities = (description: string) => {
   return `
       ${description}
@@ -46,7 +48,7 @@ export const recomendationsFunctions = [
         activities: {
           type: "string",
           description: descriptionActivities(""),
-          enum: ["enterprise", "resico", "platforms", "salaried"],
+          enum: activities,
         },
       },
       required: ["activities"],
@@ -63,7 +65,7 @@ export const recomendationsFunctions = [
         activities: {
           type: "string",
           description: descriptionActivities(""),
-          enum: ["enterprise", "resico", "platforms", "salaried"],
+          enum: activities,
         },
       },
       required: ["activities"],
@@ -80,7 +82,7 @@ export const recomendationsFunctions = [
         activities: {
           type: "string",
           description: descriptionActivities(""),
-          enum: ["enterprise", "resico", "platforms", "salaried"],
+          enum: activities,
         },
       },
       required: ["activities"],
