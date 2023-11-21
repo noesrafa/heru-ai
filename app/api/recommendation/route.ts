@@ -1,5 +1,4 @@
-import { welcomeFunctions } from "@/utils/functions";
-import { welcomePrompt } from "@/utils/prompts";
+import { recomendationsFunctions } from "@/utils/functions";
 import { NextResponse } from "next/server";
 import OpenAI from "openai";
 
@@ -8,15 +7,19 @@ const openai = new OpenAI({
 });
 
 export async function POST(request: Request) {
-  const { messages } = await request.json();
+  const { recommendation, userContext } = await request.json();
 
   console.log(
     "\n\n -------------------------------------- \n\n ",
-    messages,
+    "AI: ",
+    recommendation,
+    "\n\n",
+    "User: ",
+    userContext,
     "\n\n -------------------------------------- \n\n "
   );
 
-  if (!messages) {
+  if (!recommendation || !userContext) {
     return NextResponse.json({ message: "Query is required" });
   }
 
@@ -32,19 +35,28 @@ export async function POST(request: Request) {
     );
   }
 
-  const messages_chat = [
+  const messages = [
     {
       role: "system",
-      content: welcomePrompt(),
+      content: `
+      Ejecuta la función que más se adecue a la situación: \n
+      SI NO TIENE NADA QUE VER CON ESTO O NO SE ENCUENTRA EL SERVICIO EN LA LISTA EJECUTA LA FUNCIÓN ERROR.
+      
+      Producto recomendado: \n
+      ${recommendation}
+
+      Respuesta del usuario: \n
+      ${userContext}
+      `,
     },
-    ...messages,
   ];
 
   try {
     const response = await openai.chat.completions.create({
       model: "gpt-3.5-turbo",
-      messages: messages_chat,
-      functions: welcomeFunctions,
+      //@ts-ignore
+      messages,
+      functions: recomendationsFunctions,
       function_call: "auto",
     });
 
