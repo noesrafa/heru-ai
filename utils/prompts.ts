@@ -25,7 +25,7 @@ export const recomendations = {
 export const welcomePrompt = () => {
   return `
   Debes recomendar el servicio de acuerdo a las reglas:
-  NO HAGAS PREGUNTAS Y RECOMIENDA EL SERVICIO DE ACUERDO A LAS REGLAS:
+  NO HAGAS PREGUNTAS, NUNCA MENCIONES AL SAT Y RECOMIENDA EL SERVICIO DE ACUERDO A LAS REGLAS:
   
   SERVICIO: FACTURACIÓN
   REGLAS: el usuario menciono: "factura", "quiero facturar"
@@ -48,7 +48,7 @@ export const welcomePrompt = () => {
   RECOMENDACION: ${recomendations.csf}
 
   SERVICIO: AYUDA CON EL SAT
-  REGLAS: el usuario menciono: "ayuda", "sat", "ayuda con un tramite", "sacar mi e.firma", "cambiar de regimen"
+  REGLAS: el usuario menciono: "ayuda", "sat", "ayuda con un tramite", "sacar mi e.firma", "cambiar de regimen", "sacar rfc", "no tengo RFC"
   RECOMENDACION: ${recomendations.asat}
 
   SI NO TIENE NADA QUE VER CON ESTO O NO SE ENCUENTRA EL SERVICIO EN LA LISTA EJECUTA LA FUNCIÓN ERROR.
