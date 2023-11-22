@@ -16,7 +16,7 @@ export async function POST(request: Request) {
     "\n\n",
     "User: ",
     userContext,
-    "\n\n -------------------------------------- \n\n "
+    "\n"
   );
 
   if (!recommendation || !userContext) {
@@ -59,6 +59,8 @@ export async function POST(request: Request) {
       functions: recomendationsFunctions,
       function_call: "auto",
     });
+
+    console.log(response, "\n\n -------------------------------------- \n\n ");
 
     return NextResponse.json(response);
   } catch (error) {

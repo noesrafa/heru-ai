@@ -12,8 +12,9 @@ export async function POST(request: Request) {
 
   console.log(
     "\n\n -------------------------------------- \n\n ",
+    "User: ",
     message,
-    "\n\n -------------------------------------- \n\n "
+    "\n"
   );
 
   if (!message) {
@@ -51,6 +52,8 @@ export async function POST(request: Request) {
       functions: welcomeFunctions,
       function_call: "auto",
     });
+
+    console.log(response, "\n\n -------------------------------------- \n\n ");
 
     return NextResponse.json(response);
   } catch (error) {
