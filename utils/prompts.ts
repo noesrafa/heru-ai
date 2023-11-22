@@ -1,7 +1,7 @@
 export const recomendations = {
   // FACTURACION
   invoicing:
-    "Te recomendamos nuestro servicio de facturación, es completamente gratis!",
+    "Te recomendamos nuestro servicio de facturación, es completamente gratis ¿Eres persona fisica o moral?",
 
   // DECLARACION MENSUAL
   subscripton:
