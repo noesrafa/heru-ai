@@ -53,7 +53,13 @@ export async function POST(request: Request) {
       function_call: "auto",
     });
 
-    console.log(response, "\n\n -------------------------------------- \n\n ");
+    console.log(
+      "Response: ",
+      response?.choices?.[0]?.message?.content || "No response found",
+      "\n\nTokens: ",
+      response?.usage?.total_tokens,
+      "\n\n -------------------------------------- \n\n "
+    );
 
     return NextResponse.json(response);
   } catch (error) {
