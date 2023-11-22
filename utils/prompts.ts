@@ -32,7 +32,7 @@ export const welcomePrompt = () => {
   RECOMENDACION: ${recomendations.invoicing}
 
   SERVICIO: DECLARACION MENSUAL
-  REGLAS: el usuario menciono: "declaración", "mensual", "presentar mis impuestos
+  REGLAS: el usuario menciono: "declaración", "mensual", "presentar mis impuestos", "pagar menos"
   RECOMENDACION: ${recomendations.subscripton}
 
   SERVICIO: DECLARACIÓN ANUAL
