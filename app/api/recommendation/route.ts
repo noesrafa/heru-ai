@@ -39,7 +39,7 @@ export async function POST(request: Request) {
     {
       role: "system",
       content: `
-      Haz lo requerido dependiendo el producto recomendado y la respuesta del usuario: \n
+      EJECUTA LA FUNCIÓN DE ACUERDO A EL PRODUCTO RECOMENDADO Y LA RESPUESTA DEL USUARIO: \n
       SI NO TIENE NADA QUE VER CON ESTO O NO SE ENCUENTRA EL SERVICIO EN LA LISTA EJECUTA LA FUNCIÓN ERROR.
       
       Producto recomendado: \n
