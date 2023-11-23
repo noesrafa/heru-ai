@@ -16,6 +16,19 @@ const descriptionActivities = (description: string) => {
     `;
 };
 
+const descriptionASAT = (description: string) => {
+  return `
+      ${description}
+      User say
+      "Cambio de regimen" is equal to "basic"
+      "Cambio de domicilio" is equal to "basic"
+      "e firma" is equal to "complete"
+      "otro" is equal to "complete"
+
+      RULE: ANY OTHER ANSWER IS EQUAL TO "complete"
+    `;
+};
+
 // ======================== RECOMENDATIONS ==========================
 
 export const recomendationsFunctions = [
@@ -115,7 +128,13 @@ export const recomendationsFunctions = [
           `,
     parameters: {
       type: "object",
-      properties: {},
+      properties: {
+        asat_type: {
+          type: "string",
+          description: descriptionASAT(""),
+          enum: ["basic", "complete"],
+        },
+      },
     },
   },
 ];

@@ -39,21 +39,24 @@ export async function POST(request: Request) {
     {
       role: "system",
       content: `
-      Ejecuta la función que más se adecue a la situación: \n
+      Haz lo requerido dependiendo el producto recomendado y la respuesta del usuario: \n
       SI NO TIENE NADA QUE VER CON ESTO O NO SE ENCUENTRA EL SERVICIO EN LA LISTA EJECUTA LA FUNCIÓN ERROR.
       
       Producto recomendado: \n
       ${recommendation}
 
-      Respuesta del usuario: \n
-      ${userContext}
+      Respuesta del usuario:
       `,
     },
+    {
+      role: "user",
+      content: userContext,
+    }
   ];
 
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4",
+      model: "gpt-4-0613",
       //@ts-ignore
       messages,
       functions: recomendationsFunctions,
