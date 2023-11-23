@@ -19,7 +19,7 @@ export const recomendations = {
   csf: "Te recomendamos nuestro servicio de constancia de situación fiscal, ¿qué actividades realizas?",
 
   // AYUDA CON EL SAT
-  asat: "Te recomendamos nuestro servicio de ayuda con el sat, ¿Requieres alguno de estos tramites 'Cambio de regimen', 'sellos', 'efirma', 'otro'? ",
+  asat: "Te recomendamos nuestro servicio de ayuda con el sat, ¿Requieres alguno de estos tramites 'Cambio de regimen', 'sellos', 'efirma', 'cambio de domicilio', 'otro'? ",
 };
 
 export const welcomePrompt = () => {
