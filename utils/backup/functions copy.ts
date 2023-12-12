@@ -57,7 +57,14 @@ export const recomendationsFunctions = [
           `,
     parameters: {
       type: "object",
-      properties: {},
+      properties: {
+        activities: {
+          type: "string",
+          description: descriptionActivities(""),
+          enum: activities,
+        },
+      },
+      required: ["activities"],
     },
   },
   {
@@ -67,7 +74,14 @@ export const recomendationsFunctions = [
           `,
     parameters: {
       type: "object",
-      properties: {},
+      properties: {
+        activities: {
+          type: "string",
+          description: descriptionActivities(""),
+          enum: activities,
+        },
+      },
+      required: ["activities"],
     },
   },
   {
@@ -77,7 +91,14 @@ export const recomendationsFunctions = [
           `,
     parameters: {
       type: "object",
-      properties: {},
+      properties: {
+        activities: {
+          type: "string",
+          description: descriptionActivities(""),
+          enum: activities,
+        },
+      },
+      required: ["activities"],
     },
   },
   {
@@ -125,67 +146,7 @@ export const welcomeFunctions = [
     name: "error",
     description: `
           RULES: THE USER SAY SOMETHING THAT IS NOT IN THE LIST, OR IS IRRILEVANT TO THE LIST.
-          OR YOU CANT FIND THE USER INTENT. or user only say: "hola", "gracias", "no entendi"
-          `,
-    parameters: {
-      type: "object",
-      properties: {},
-    },
-  },
-  {
-    name: "regularization",
-    description: `
-          User say: "tengo declaraciones pendientes", "no he presentado mis impuestos", "meses pendientes", "declaraciones de años anteriores", "me quiero poner al corriente".
-          `,
-    parameters: {
-      type: "object",
-      properties: {},
-    },
-  },
-  {
-    name: "subscription",
-    description: `
-          User say: "Quiero presentar mis impuestos mensuales", "Soy uber/rappi/didi", "Como puedo comenzar a pagar impuestos", "Quiero pagar menos impuestos"."
-          `,
-    parameters: {
-      type: "object",
-      properties: {},
-    },
-  },
-  {
-    name: "annual",
-    description: `
-         User say: "Declaracion anual", "Quiero presentar mi declaración de este año", "Quiero presentar mi declaracion anual del año pasado", "declaraciones anuales atrasadas"
-          `,
-    parameters: {
-      type: "object",
-      properties: {},
-    },
-  },
-  {
-    name: "invoicing",
-    description: `
-          User say: "Facturar", "Se puede facturar", "es gratis facturar".
-          `,
-    parameters: {
-      type: "object",
-      properties: {},
-    },
-  },
-  {
-    name: "csf",
-    description: `
-          User say: "constancia", "situación fiscal", "documento del sat", "csf".
-          `,
-    parameters: {
-      type: "object",
-      properties: {},
-    },
-  },
-  {
-    name: "asat",
-    description: `
-          User say: "ayuda con el sat", "tramite del sat", "efirma", "cambiar regimen", "cambiar domicilio"
+          OR YOU CANT FIND THE USER INTENT. or say: "hola", "gracias", "no entendi"
           `,
     parameters: {
       type: "object",

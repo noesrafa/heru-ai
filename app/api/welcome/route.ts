@@ -46,7 +46,8 @@ export async function POST(request: Request) {
 
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4-0613",
+      // model: "gpt-4-0613",
+      model: "gpt-3.5-turbo-1106",
       //@ts-ignore
       messages: messages_chat,
       functions: welcomeFunctions,
