@@ -39,9 +39,6 @@ export async function POST(request: Request) {
     {
       role: "system",
       content: `
-      EJECUTA LA FUNCIÓN DE ACUERDO A EL PRODUCTO RECOMENDADO Y LA RESPUESTA DEL USUARIO: \n
-      SI NO TIENE NADA QUE VER CON ESTO O NO SE ENCUENTRA EL SERVICIO EN LA LISTA EJECUTA LA FUNCIÓN ERROR.
-      
       Producto recomendado: \n
       ${recommendation}
 
@@ -51,12 +48,12 @@ export async function POST(request: Request) {
     {
       role: "user",
       content: userContext,
-    }
+    },
   ];
 
   try {
     const response = await openai.chat.completions.create({
-      model: "gpt-4-0613",
+      model: "gpt-3.5-turbo-1106",
       //@ts-ignore
       messages,
       functions: recomendationsFunctions,
