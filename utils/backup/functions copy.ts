@@ -1,4 +1,4 @@
-import { recomendations } from "./prompts";
+import { recomendations } from "./prompts copy";
 
 const activities = ["enterprise", "resico", "platforms", "salaried"];
 
