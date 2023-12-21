@@ -2,36 +2,17 @@ import { NextResponse } from "next/server";
 
 export async function POST(request: Request) {
   const data = await request.json();
-
   const headers = {
     "Content-Type": "application/json",
     "OpenAI-Beta": "assistants=v1",
     Authorization: `Bearer ${process.env.OPENAI_API_KEY_CUSTOM}`,
   };
 
-  const thread = await fetch("https://api.openai.com/v1/threads/runs", {
-    method: "POST",
-    body: JSON.stringify({
-      assistant_id: "asst_jYC4clrRsW3mN4WHUCIoi6Bf",
-      thread: {
-        messages: [
-          {
-            role: "user",
-            content: data.userMessage.message,
-          },
-        ],
-      },
-    }),
-    headers,
-  });
-
-  const threadJson = await thread.json();
-
-  async function waitForCompletion() {
+  async function waitForCompletion(thread_id: string, run_id: string) {
     let runJson;
     do {
       const run = await fetch(
-        `https://api.openai.com/v1/threads/${threadJson.thread_id}/runs/${threadJson.id}`,
+        `https://api.openai.com/v1/threads/${thread_id}/runs/${run_id}`,
         {
           method: "GET",
           headers,
@@ -51,31 +32,64 @@ export async function POST(request: Request) {
     }
   }
 
-  const threadCompleted = await waitForCompletion();
+  try {
+    const thread = await fetch("https://api.openai.com/v1/threads/runs", {
+      method: "POST",
+      body: JSON.stringify({
+        assistant_id: "asst_jYC4clrRsW3mN4WHUCIoi6Bf",
+        thread: {
+          messages: [
+            {
+              role: "user",
+              content: data.userMessage.message,
+            },
+          ],
+        },
+      }),
+      headers,
+    });
 
-  if (threadCompleted === "completed") {
-    const response = await fetch(
-      `https://api.openai.com/v1/threads/${threadJson.thread_id}/messages`,
-      {
-        method: "GET",
-        headers,
-      }
+    const threadJson = await thread.json();
+    console.log("\n\n\n", "THREAD", threadJson);
+
+    const threadCompleted = await waitForCompletion(
+      threadJson.thread_id,
+      threadJson.id
     );
 
-    const responseJson = await response.json();
+    if (threadCompleted === "completed") {
+      const response = await fetch(
+        `https://api.openai.com/v1/threads/${threadJson.thread_id}/messages`,
+        {
+          method: "GET",
+          headers,
+        }
+      );
 
-    console.log("\n\n\n", "RESPONSE", responseJson);
+      const responseJson = await response.json();
+
+      console.log("\n\n\n", "RESPONSE", responseJson);
+
+      return NextResponse.json({
+        botMessage: responseJson?.data?.[0]?.content?.[0]?.text?.value,
+        nextModuleNickname: "",
+        responseExpected: true,
+      });
+    }
 
     return NextResponse.json({
-      botMessage: responseJson?.data?.[0]?.content?.[0]?.text?.value,
+      botMessage: null,
       nextModuleNickname: "",
-      responseExpected: true,
+      responseExpected: false,
     });
+  } catch (error) {
+    return NextResponse.json(
+      {
+        message: error,
+      },
+      {
+        status: 401,
+      }
+    );
   }
-
-  return NextResponse.json({
-    botMessage: null,
-    nextModuleNickname: "",
-    responseExpected: false,
-  });
 }
