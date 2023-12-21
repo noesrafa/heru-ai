@@ -37,7 +37,7 @@ export const recomendationsFunctions = [
     parameters: {
       type: "object",
       properties: {
-        location: {
+        asat_type: {
           type: "string",
           description: descriptionASAT(),
         },
@@ -54,7 +54,7 @@ export const recomendationsFunctions = [
     parameters: {
       type: "object",
       properties: {
-        location: {
+        activities: {
           type: "string",
           description: descriptionActivities(),
         },
