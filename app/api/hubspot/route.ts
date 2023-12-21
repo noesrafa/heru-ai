@@ -7,6 +7,7 @@ export async function POST(request: Request) {
     "OpenAI-Beta": "assistants=v1",
     Authorization: `Bearer ${process.env.OPENAI_API_KEY_CUSTOM}`,
   };
+  console.log("\n\n\n", "API KEY", process.env.OPENAI_API_KEY_CUSTOM);
 
   async function waitForCompletion(thread_id: string, run_id: string) {
     let runJson;
