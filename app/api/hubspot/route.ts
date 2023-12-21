@@ -40,6 +40,7 @@ export async function POST(request: Request) {
 
       runJson = await run.json();
 
+      console.log("\n\n\n", "TRY", runJson);
       await new Promise((resolve) => setTimeout(resolve, 1500));
     } while (["in_progress", "queued"].includes(runJson.status));
     {
@@ -62,6 +63,8 @@ export async function POST(request: Request) {
     );
 
     const responseJson = await response.json();
+
+    console.log("\n\n\n", "RESPONSE", responseJson);
 
     return NextResponse.json({
       botMessage: responseJson?.data?.[0]?.content?.[0]?.text?.value,
