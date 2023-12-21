@@ -36,7 +36,11 @@ export async function POST(request: Request) {
   const messages_chat = [
     {
       role: "system",
-      content: welcomePrompt(),
+      content: `
+      EJECUTA LA FUNCION REQUERIDA, SI NO HAY NINGUNA FUNCION QUE LO SOLUCIONE EJECUTA LA FUNCION ERROR.
+    
+      USER intent: \n
+      `,
     },
     {
       role: "user",
