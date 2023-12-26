@@ -1,7 +1,3 @@
-import { recomendations } from "./prompts";
-
-const activities = ["enterprise", "resico", "platforms", "salaried"];
-
 const descriptionActivities = (description?: string) => {
   return `
       ${description}
@@ -10,6 +6,7 @@ const descriptionActivities = (description?: string) => {
       "Trabajo en una empresa" is equal to "salaried"
       "Tengo una empresa" is equal to "enterprise"
       "Soy independiente, freelance" is equal to "resico"
+      "Soy arrendatario, rento un inmueble, rento una casa, rento un apartamento" is equal to "lease"
 
       RULE: In the event that it is detected that there may be more than one activity, the parameter is equal to "multiple"
     `;
@@ -37,12 +34,9 @@ export const recomendationsFunctions = [
     parameters: {
       type: "object",
       properties: {
-        asat_type: {
-          type: "string",
-          description: descriptionASAT(),
-        },
         type: {
           type: "string",
+          description: descriptionASAT(),
           enum: ["complete", "basic"],
         },
       },
@@ -54,13 +48,10 @@ export const recomendationsFunctions = [
     parameters: {
       type: "object",
       properties: {
-        activities: {
+        type: {
           type: "string",
           description: descriptionActivities(),
-        },
-        activity: {
-          type: "string",
-          enum: ["platforms", "salaried", "enterprise", "resico"],
+          enum: ["platforms", "salaried", "enterprise", "resico", "lease"],
         },
       },
     },
