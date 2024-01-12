@@ -19,6 +19,8 @@ const descriptionASAT = (description?: string) => {
       "Cambio de regimen" is equal to "basic"
       "Cambio de domicilio" is equal to "basic"
       "e firma" is equal to "complete"
+      "sellos" is equal to "complete"
+      "Darme de alta en " is equal to "complete"
       "otro" is equal to "complete"
 
       RULE: ANY OTHER ANSWER IS EQUAL TO "complete"
@@ -30,7 +32,7 @@ const descriptionASAT = (description?: string) => {
 export const recomendationsFunctions = [
   {
     name: "get_asat_type",
-    description: "for asat give the type of service",
+    description: "Use when the recommended product is ASAT",
     parameters: {
       type: "object",
       properties: {
@@ -44,7 +46,7 @@ export const recomendationsFunctions = [
   },
   {
     name: "get_activities",
-    description: "for: regularizations, annual, subscription",
+    description: "Use when recommended product is one of this: regularizations, annual, subscription",
     parameters: {
       type: "object",
       properties: {
@@ -86,7 +88,7 @@ export const welcomeFunctions = [
   {
     name: "regularization",
     description: `
-          User say: "tengo declaraciones pendientes", "no he presentado mis impuestos", "meses pendientes", "declaraciones de años anteriores", "me quiero poner al corriente".
+          User say: "declaraciones pendientes", "no he presentado mis impuestos", "meses pendientes", "declaraciones de años anteriores", "me quiero poner al corriente", "ponerme al dia", "declaraciones atrasadas".
           `,
     parameters: {
       type: "object",
@@ -96,7 +98,7 @@ export const welcomeFunctions = [
   {
     name: "subscription",
     description: `
-          User say: "Quiero presentar mis impuestos mensuales", "Soy uber/rappi/didi", "Como puedo comenzar a pagar impuestos", "Quiero pagar menos impuestos"."
+          User say: "Quiero presentar mis impuestos mensuales", "Soy uber/rappi/didi", "Como puedo comenzar a pagar impuestos", "Quiero pagar menos impuestos", "certificado de retenciones", "presentar mis declaraciones", "Como se hace el tramite para pagar impuestos". "Ayuda o asesoría""
           `,
     parameters: {
       type: "object",
@@ -106,7 +108,7 @@ export const welcomeFunctions = [
   {
     name: "annual",
     description: `
-         User say: "Declaracion anual", "Quiero presentar mi declaración de este año", "Quiero presentar mi declaracion anual del año pasado", "declaraciones anuales atrasadas"
+         User say: "Anual", "Declaracion anual", "Quiero presentar mi declaración de este año", "Quiero presentar mi declaracion anual del año pasado", "declaraciones anuales atrasadas", "Ponerme al día con mi anual"
           `,
     parameters: {
       type: "object",
@@ -126,7 +128,7 @@ export const welcomeFunctions = [
   {
     name: "csf",
     description: `
-          User say: "constancia", "situación fiscal", "documento del sat", "csf".
+          User say: "constancia", "situación fiscal", "documento del sat", "csf", "documentos".
           `,
     parameters: {
       type: "object",
@@ -136,7 +138,7 @@ export const welcomeFunctions = [
   {
     name: "asat",
     description: `
-          User say: "ayuda con el sat", "tramite del sat", "efirma", "cambiar regimen", "cambiar domicilio"
+          User say: "ayuda con el sat", "tramite del sat", "efirma", "cambiar regimen", "cambiar domicilio", "sellos", 'rfc', "darme de alta en".
           `,
     parameters: {
       type: "object",

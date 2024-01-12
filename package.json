@@ -12,7 +12,9 @@
     "next": "14.0.3",
     "openai": "^4.19.0",
     "react": "^18",
-    "react-dom": "^18"
+    "react-dom": "^18",
+    "@pinecone-database/pinecone": "^1.1.0",
+    "langchain": "^0.0.161"
   },
   "devDependencies": {
     "@types/node": "^20",
