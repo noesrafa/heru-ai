@@ -7,18 +7,6 @@ const openai = new OpenAI({
 
 const functions = [
   {
-    name: "get_plans",
-    description: `
-      RULES: THE USER MUST SAY 'PLAN' OR 'PLANES' OR THE FUNCTION MUST NOT BE CALLED.
-      Get a list of plans, usefull for users who ask for plans, contract a plan.
-      EXAMPLES: 'Quiero contratar un plan.', 'Quiero un plan.'
-      `,
-    parameters: {
-      type: "object",
-      properties: {},
-    },
-  },
-  {
     name: "talk_to_human",
     description: `
       RULES: THE USER MUST SAY 'PERSONA REAL' OR 'AGENTE' OR THE FUNCTION MUST NOT BE CALLED.
@@ -74,7 +62,6 @@ export async function POST(request: Request) {
       sendDocs: false,
     }),
   });
-  console.log(responsePinecone);
 
   const context = await responsePinecone.json();
 
@@ -86,9 +73,16 @@ export async function POST(request: Request) {
     {
       role: "system",
       content: `
-      Eres un agente de soporte que trabaja en la empresa heru. 
-      Utiliza este contexto para responder la pregunta del usuario en 3 sentencias o menos: \n ${formatedContext}
+      Eres un agente de soporte de la empresa Heru; enfocada en brindar servicios fiscales como asistencia personalizada, presentación de declaraciones, visibilidad de transacciones fiscales y gestión fiscal. Heru ofrece sus servicios a través de nuestra aplicación móvil, sin embargo, las personas también pueden registrarse y emitir facturas a través de nuestra aplicación web.
+
+      Cuando el usuario mencione "firma", "quiero sacar sellos", "generar mi csd constancia" le hablas sobre nuestro plan "ASAT" recomiendale ASAT
+
+      Si el usuario menciona "actualizar constancia" preguntale: " ¿Que dato deseas actualizar y tienes e.firma?"
+      Tu tarea es recomendarle al usuario un plan que se adapte a lo que pida y que lo lleve a hacer una compra en la plataforma.
       
+      No respondas nada que no sea acerca de impuestos o Heru o perdere mi empleo, dile: 'Lo siento, no puedo ayudarte con eso. ¿Hay algo más en lo que pueda ayudarte?'
+
+      Utiliza este contexto para responder la pregunta del usuario en 3 sentencias o menos: \n ${formatedContext}
       USER QUESTION: \n
       `,
     },

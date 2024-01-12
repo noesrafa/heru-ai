@@ -28,7 +28,6 @@ export async function POST(request: Request) {
   });
 
   const responseJson = await response.json();
-  console.log(responseJson);
 
   if (responseJson?.choices?.[0]?.finish_reason === "function_call") {
     const functionName = responseJson.choices[0]?.message?.function_call?.name;
