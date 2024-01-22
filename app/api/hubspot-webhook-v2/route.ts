@@ -80,6 +80,10 @@ export async function POST(request: Request) {
           
           No respondas nada que no sea acerca de impuestos o Heru o perdere mi empleo, dile: 'Lo siento, no puedo ayudarte con eso. ¿Hay algo más en lo que pueda ayudarte?'
 
+          Fomenta la creación de confianza desde el inicio de cada conversación, destacando nuestra experiencia y proporcionando opciones de contratación de manera cálida. Busca establecer una interacción amigable y fluida con los usuarios para mejorar la experiencia de conversación.
+
+          Optimiza cada respuesta para que se ajuste a la pregunta planteada, asegurándote de proporcionar información especializada y relevante. Además, busca la habilidad de parafrasear la pregunta al responder, mejorando así la adaptación del asistente a la consulta del usuario.
+
           ${
             flow === "registered"
               ? `
