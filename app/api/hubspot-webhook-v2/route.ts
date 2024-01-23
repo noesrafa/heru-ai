@@ -52,7 +52,7 @@ export async function POST(request: Request) {
   const data = await request.json();
   const url = new URL(request.url);
 
-  console.log("\n", data, "\n");
+  console.log("\n", JSON.stringify(data), "\n");
 
   const flow = url.searchParams.get("flow") || "unregistered";
   console.log(
