@@ -55,12 +55,12 @@ export async function POST(request: Request) {
   console.log("\n", JSON.stringify(data), "\n");
 
   const email = data?.session?.properties?.CONTACT?.email?.value;
-  const firstname = data?.session?.properties?.CONTACT?.firstname?.value;
+  const username = data?.session?.properties?.CONTACT?.firstname?.value;
 
   console.log(
     "\n EMAIL - FIRSTNAME",
     email,
-    firstname,
+    username,
     "\n ------------------ \n"
   );
 
@@ -95,7 +95,7 @@ export async function POST(request: Request) {
           Fomenta la creación de confianza desde el inicio de cada conversación, destacando nuestra experiencia y proporcionando opciones de contratación de manera cálida. Busca establecer una interacción amigable y fluida con los usuarios para mejorar la experiencia de conversación.
 
           Optimiza cada respuesta para que se ajuste a la pregunta planteada, asegurándote de proporcionar información especializada y relevante. Además, busca la habilidad de parafrasear la pregunta al responder, mejorando así la adaptación del asistente a la consulta del usuario.
-
+          
           ${
             flow === "registered"
               ? `
@@ -108,12 +108,14 @@ export async function POST(request: Request) {
     
           Utiliza este contexto para responder la pregunta del usuario en 3 sentencias o menos: \n ${formatedContext}
           
-          \n PREGUNTA DEL USUARIO: \n
+          Si el usuario te está saludando, dice "hola", "buenos días", o parece que es la primera pregunta que hace, contestale por su nombre: ${username}.
+          
+          \n PREGUNTA DE ${username}: \n
           `,
       },
       {
         role: "user",
-        content: `Hola! soy ${firstname}, ${data.userMessage.message}`,
+        content: `${data.userMessage.message}`,
       },
     ];
 
