@@ -54,6 +54,16 @@ export async function POST(request: Request) {
 
   console.log("\n", JSON.stringify(data), "\n");
 
+  const email = data?.session?.properties?.CONTACT?.email?.value;
+  const firstname = data?.session?.properties?.CONTACT?.firstname?.value;
+
+  console.log(
+    "\n EMAIL - FIRSTNAME",
+    email,
+    firstname,
+    "\n ------------------ \n"
+  );
+
   const flow = url.searchParams.get("flow") || "unregistered";
   console.log(
     "\n -------------------------------------- \n ",
@@ -103,7 +113,7 @@ export async function POST(request: Request) {
       },
       {
         role: "user",
-        content: data.userMessage.message,
+        content: `Hola! soy ${firstname}, ${data.userMessage.message}`,
       },
     ];
 
