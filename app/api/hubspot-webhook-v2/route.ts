@@ -108,7 +108,7 @@ export async function POST(request: Request) {
     
           Utiliza este contexto para responder la pregunta del usuario en 3 sentencias o menos: \n ${formatedContext}
           
-          Intenta integrar el nombre del usuario en alguna parte de la respuesta, de manera natural y amable: ${username}.
+          Intenta usar el nombre del usuario en alguna parte de la respuesta, de manera natural y amable: ${username}. Si te dice 'hola'. 'buenos dias', 'buenas tardes', 'buenas noches', obligatoriamente tienes que responderle con un saludo y su nombre.
           
           \n PREGUNTA DE ${username}: \n
           `,
