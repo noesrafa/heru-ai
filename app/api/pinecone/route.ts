@@ -74,7 +74,9 @@ export async function POST(request: Request) {
   // ========================
 
   if (sendDocs) {
+    await deleteDocs();
     await uploadDocs();
+
     return NextResponse.json("Creados");
   }
 

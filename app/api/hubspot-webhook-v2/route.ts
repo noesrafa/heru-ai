@@ -108,7 +108,7 @@ export async function POST(request: Request) {
     
           Utiliza este contexto para responder la pregunta del usuario en 3 sentencias o menos: \n ${formatedContext}
           
-          Si el usuario te está saludando, dice "hola", "buenos días", o parece que es la primera pregunta que hace, contestale por su nombre: ${username}.
+          Intenta integrar el nombre del usuario en alguna parte de la respuesta, de manera natural y amable: ${username}.
           
           \n PREGUNTA DE ${username}: \n
           `,
@@ -131,7 +131,7 @@ export async function POST(request: Request) {
 
     if (responseJson?.choices?.[0]?.finish_reason === "function_call") {
       const functionName =
-        responseJson.choices[0]?.message?.function_call?.name;
+        responseJson?.choices?.[0]?.message?.function_call?.name;
       console.log("\n", `Fn_${functionName}`, "\n");
       if (functionName === "talk_to_human") {
         return NextResponse.json({
@@ -143,7 +143,10 @@ export async function POST(request: Request) {
     }
 
     return NextResponse.json({
-      botMessage: responseJson.choices?.[0].message.content,
+      botMessage: responseJson.choices?.[0].message.content?.replaceAll(
+        "/",
+        ""
+      ),
       nextModuleNickname: "",
       responseExpected: true,
     });
