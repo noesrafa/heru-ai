@@ -144,7 +144,7 @@ export async function POST(request: Request) {
 
     return NextResponse.json({
       botMessage: responseJson.choices?.[0].message.content?.replaceAll(
-        "/",
+        "\\",
         ""
       ),
       nextModuleNickname: "",
